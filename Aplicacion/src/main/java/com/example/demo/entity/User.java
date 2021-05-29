@@ -54,6 +54,11 @@ public class User implements Serializable{
 	
 	private Set<Role> roles;
 
+	
+	public User() {
+		super();
+	}
+
 	public User(Long id) {
 		super();
 		this.id = id;
