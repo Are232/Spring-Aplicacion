@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.management.AttributeValueExp;
 import javax.validation.Valid;
 
 import com.example.demo.entity.User;
@@ -100,4 +102,14 @@ public class UserController {
 		public String cancelEditUser(ModelMap model) {
 			return "redirect:/userForm";
 		}
+	 
+	 @GetMapping("/deleteUser/{id}")
+	 public String deleteUser(Model model, @PathVariable(name="id")Long id) {
+		 try {
+			userService.deleteUser(id);
+		} catch (Exception e) {
+			model.addAttribute("listErrorMessage", e.getMessage());
+		}
+		 return userForm(model);
+	 }
 }
